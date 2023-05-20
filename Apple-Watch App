@@ -1,0 +1,69 @@
+import SwiftUI
+
+struct ContentView: View {
+    @State private var showQRCode = false
+    @State private var showDirections = false
+    
+    var body: some View {
+        VStack {
+            if !showQRCode && !showDirections {
+                Text("GumDrop")
+                    .font(.title)
+                    .foregroundStyle(.pink)
+                    .padding()
+                
+                Button(action: {
+                    showQRCode = true
+                }) {
+                    Text("QR Code")
+                        .font(.title)
+                        .foregroundStyle(.purple)
+                        .padding()
+                }
+                
+                Button(action: {
+                    showDirections = true
+                }) {
+                    Text("Nearest")
+                        .font(.title)
+                        .foregroundStyle(.purple)
+                        .padding()
+                }
+            } else if showQRCode {
+                Image("Image")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
+                
+                Button(action: {
+                    showQRCode = false
+                }) {
+                    Text("Back")
+                        .font(.caption2)
+                        .foregroundStyle(.purple)
+                        .padding()
+                }
+            } else if showDirections {
+                Image("Map")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
+                
+                Button(action: {
+                    showDirections = false
+                }) {
+                    Text("Back")
+                        .font(.caption2)
+                        .foregroundStyle(.purple)
+                        .padding()
+                }
+            }
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
